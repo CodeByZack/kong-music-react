@@ -39,7 +39,8 @@ export const getHotMusicList = async ()=>{
     return {
       name : item.name,
       picUrl : item.picUrl,
-      id : item?.song?.lMusic.id
+      id : item?.song?.lMusic.id,
+      album_artist : `${item?.song?.album.name} - ${item?.song?.artists[0].name}`
     };
   })
   return processRes;

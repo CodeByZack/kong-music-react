@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { getPlayList } from "../../http";
-import { PlayListItemModel } from "../../utils/types";
+import { getHotMusicList, getPlayList } from "../../http";
+import { MusicItemModel, PlayListItemModel } from "../../utils/types";
 import { createContainer } from "../../utils/unstate-next";
 
 
 const useStore = ()=>{
 
   const [ playList, setPlayList ] = useState<PlayListItemModel[]>([]);
-
+  const [ hotMusicList, setHotMusicList ] = useState<MusicItemModel[]>([]);
   useEffect(()=>{
     getPlayList().then(res=>{
       console.log(res); 
@@ -15,9 +15,18 @@ const useStore = ()=>{
     },err=>{
       console.log(err);
     });
+
+    getHotMusicList().then(res=>{
+      console.log(res);
+      setHotMusicList(res);
+    },err=>{
+      console.log(err);
+    });
+
+
   },[]);
 
-  return {playList};
+  return {playList,hotMusicList};
 };
 
 const Store = createContainer(useStore);

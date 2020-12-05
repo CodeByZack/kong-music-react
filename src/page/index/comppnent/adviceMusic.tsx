@@ -47,7 +47,7 @@ const cards = [1, 2, 3, 4, 5, 6];
 const AdviceMusic = () => {
   const styles = useStyles();
   
-  const { playList = [] } = Store.useContainer();
+  const { playList = [], hotMusicList= []} = Store.useContainer();
   return (
     <div className={styles.root}>
       <BoxTitle title="推荐歌单" />
@@ -74,9 +74,9 @@ const AdviceMusic = () => {
       <BoxTitle title="最新音乐" />
 
       <List>
-        {cards.map(() => (
+        {hotMusicList.map((music) => (
           <ListItem dense className={styles.musicListItem}>
-            <ListItemText primary="南屏晚风" secondary="小娟&山谷里的居民" />
+            <ListItemText primary={music.name} secondary={music.album_artist} />
             <ListItemSecondaryAction>
               <IconButton edge="end">
                 <PlayIcon />

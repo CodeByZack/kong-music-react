@@ -9,4 +9,5 @@ export interface MusicItemModel {
   name : string;
   picUrl : string;
   id : number;
+  album_artist : string;
 }
